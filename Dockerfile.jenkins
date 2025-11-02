@@ -1,0 +1,21 @@
+FROM jenkins/jenkins:lts
+
+# Switch to root to install Docker client
+USER root
+
+# Install Docker client
+RUN apt-get update && \
+    apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt-get update && \
+    apt-get install -y docker-ce-cli
+
+# Add the jenkins user to the docker group (will be created when Jenkins starts)
+# This allows Jenkins to run Docker commands
+# Note: This is a common practice for Jenkins running Docker-in-Docker scenarios,
+# but be aware of the security implications as Jenkins will have root access to the host Docker daemon.
+RUN usermod -aG docker jenkins
+
+# Drop back to the jenkins user
+USER jenkins
