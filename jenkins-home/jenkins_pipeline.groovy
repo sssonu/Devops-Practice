@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        # Specify any tools needed, e.g., for Maven, Gradle, etc.
-        # For this example, we'll rely on the Docker client in the Jenkins container
+        // Specify any tools needed, e.g., for Maven, Gradle, etc.
+        // For this example, we'll rely on the Docker client in the Jenkins container
     }
 
     stages {
