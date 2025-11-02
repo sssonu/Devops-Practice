@@ -14,7 +14,7 @@ pipeline {
                     # Make sure this repo contains your my-webapp directory and its contents
                     # For a quick test, you can initially point it to a local directory,
                     # but for CI/CD, a remote Git repo is standard.
-                    git branch: 'main', url: 'https://github.com/your-username/your-repo-name.git'
+                    git branch: 'main', url: 'https://github.com/sssonu/Devops-Practice.git'
                     # Or for local testing (less common for CI/CD):
                     # dir('my-webapp') {
                     #    sh 'cp -r /var/jenkins_home/workspace/my-pipeline/my-webapp .'
